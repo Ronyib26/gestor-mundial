@@ -83,6 +83,8 @@ gestor-mundial/
 # 1. Instalar dependencias
 pnpm install
 
+# 2. Editar las variables de entorno
+
 # 3. Crear el esquema en la BD
 pnpm --filter server prisma:migrate
 
