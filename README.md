@@ -85,13 +85,16 @@ pnpm install
 
 # 2. Editar las variables de entorno
 
-# 3. Crear el esquema en la BD
+# 3. Correr base de datos con docker
+docker compose up -d
+
+# 4. Crear el esquema en la BD
 pnpm --filter server prisma:migrate
 
-# 4. Sembrar datos de ejemplo
+# 5. Sembrar datos de ejemplo
 pnpm --filter server seed
 
-# 5. Levantar todo
+# 6. Levantar todo
 pnpm dev
 ```
 
