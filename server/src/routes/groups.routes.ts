@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { groupsController } from '../controllers/groups.controller';
 
-export const groupsRouter = Router();
+export const groupsRouter: Router = Router();
 
 groupsRouter.get('/', groupsController.list);
 groupsRouter.get('/:id', groupsController.get);

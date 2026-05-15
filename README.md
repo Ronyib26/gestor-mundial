@@ -15,7 +15,7 @@ Aplicación web para administrar equipos participantes del Mundial, gestionar gr
 |------|-------------|
 | Frontend | React 19, Vite, TypeScript, Tailwind CSS v4, React Router, TanStack Query, React Hook Form, Zod |
 | Backend | Node.js, Express, TypeScript, Prisma, Zod |
-| Base de datos | PostgreSQL (Neon en producción) |
+| Base de datos | PostgreSQL |
 | Despliegue | Vercel (frontend + serverless functions) + Neon (PostgreSQL) |
 
 ## Estructura
@@ -75,29 +75,23 @@ gestor-mundial/
 
 - Node.js 20+
 - pnpm 10+
-- PostgreSQL (local o cuenta gratuita en [Neon](https://neon.tech))
+- PostgreSQL
 
 ### Setup
 
 ```bash
-# 1. Instalar dependencias (workspace completo)
+# 1. Instalar dependencias
 pnpm install
-
-# 2. Configurar el backend
-cp server/.env.example server/.env
-# Edita server/.env con tu DATABASE_URL y DIRECT_URL
 
 # 3. Crear el esquema en la BD
 pnpm --filter server prisma:migrate
 
-# 4. (Opcional) Sembrar datos de ejemplo
+# 4. Sembrar datos de ejemplo
 pnpm --filter server seed
 
-# 5. Levantar todo (cliente :5173 + servidor :4000)
+# 5. Levantar todo
 pnpm dev
 ```
-
-Abrir <http://localhost:5173>. Vite proxea `/api` a `localhost:4000` automáticamente.
 
 ### Comandos útiles
 

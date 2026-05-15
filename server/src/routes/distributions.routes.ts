@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { distributionsController } from '../controllers/distributions.controller';
 
-export const distributionsRouter = Router();
+export const distributionsRouter: Router = Router();
 
 distributionsRouter.get('/', distributionsController.list);
 distributionsRouter.get('/:id', distributionsController.get);

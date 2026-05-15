@@ -1,12 +1,12 @@
 import 'dotenv/config';
-import express from 'express';
+import express, { type Express } from 'express';
 import cors from 'cors';
 import { teamsRouter } from './routes/teams.routes';
 import { groupsRouter } from './routes/groups.routes';
 import { distributionsRouter } from './routes/distributions.routes';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 
-export function createApp() {
+export function createApp(): Express {
   const app = express();
 
   const corsOrigin = process.env.CORS_ORIGIN;

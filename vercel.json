@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install --no-frozen-lockfile",
-  "buildCommand": "pnpm --filter server exec prisma generate && pnpm --filter client build",
+  "buildCommand": "pnpm --filter server exec prisma generate && pnpm --filter server build && pnpm --filter client build",
   "outputDirectory": "client/dist",
   "framework": null,
   "functions": {
