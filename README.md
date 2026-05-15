@@ -83,7 +83,8 @@ gestor-mundial/
 # 1. Instalar dependencias
 pnpm install
 
-# 2. Editar las variables de entorno
+# 2. Crear el archivo de variables de entorno
+cp server/.env.example server/.env
 
 # 3. Correr base de datos con docker
 docker compose up -d
