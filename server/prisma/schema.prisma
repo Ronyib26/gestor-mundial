@@ -1,0 +1,66 @@
+// Prisma schema - Gestor Mundial
+// PostgreSQL: see DATABASE_URL in .env
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Team {
+  id           String   @id @default(uuid())
+  countryName  String   @unique @map("country_name")
+  fifaCode     String   @unique @map("fifa_code")
+  coach        String
+  playersCount Int      @map("players_count")
+  fifaRanking  Int      @unique @map("fifa_ranking")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  assignments Assignment[]
+
+  @@map("teams")
+}
+
+model Group {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  assignments Assignment[]
+
+  @@map("groups")
+}
+
+model Distribution {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  assignments Assignment[]
+
+  @@map("distributions")
+}
+
+model Assignment {
+  id             String @id @default(uuid())
+  distributionId String @map("distribution_id")
+  groupId        String @map("group_id")
+  teamId         String @map("team_id")
+
+  distribution Distribution @relation(fields: [distributionId], references: [id], onDelete: Cascade)
+  group        Group        @relation(fields: [groupId], references: [id], onDelete: Restrict)
+  team         Team         @relation(fields: [teamId], references: [id], onDelete: Restrict)
+
+  @@unique([distributionId, teamId], name: "uniq_distribution_team")
+  @@index([distributionId])
+  @@index([groupId])
+  @@index([teamId])
+  @@map("assignments")
+}
